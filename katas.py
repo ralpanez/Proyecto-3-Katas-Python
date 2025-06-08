@@ -1,16 +1,109 @@
+# EJERCICIO 1
 # Escribe una función que reciba una cadena de texto como parámetro y devuelva un diccionario con las frecuencias de cada letra en la cadena. Los espacios no deben ser considerados.
 
+miCadena = "Me encanta la programación" # definimos una variable de tipo string
+
+def frecLetras(cadena): # Creamos la funcion
+    cadena = cadena.lower() # pasaré todo a minúsculas para que ignore mayúsculas/minúsculas
+    diccionario = {} # creo el diccionario
+    for letra in cadena: #bucle for: recorre el string, detecta espacios, cuenta letras
+        if letra != " ":
+            diccionario[letra] = diccionario.get(letra, 0) + 1
+    return diccionario
+
+# llamamos a la función para probarla
+print(frecLetras(miCadena))
+# FIN EJERCICIO 1
+
+
+# EJERCICIO 2
 # Dada una lista de números, obtén una nueva lista con el doble de cada valor. Usa la función map().
 
+listaNumeros = [1, 5, 10, 20, 60] # creamos lista de numeros
+resultadoNumeros = list(map(lambda x: x * 2, listaNumeros))
+# list convertirá el resultado en lista que es lo que nos piden
+# nos piden usar map, (de ahi el anterior list, por el resultado), pero nos sirve para aplicar una funcion 'x' a cada elemento
+# lambda nos crea una función pequeña sin necesidad de definira, en este caso duplicaremos el valor de entrada
+print(resultadoNumeros) # imprimimos el resultado
+# FIN EJERCICIO 2
+
+
+# EJERCICIO 3
 # Escribe una función que tome una lista de palabras y una palabra objetivo como parámetros. La función debe devolver una lista con todas las palabras de la lista original que contengan la palabra objetivo.
 
+listaPelis = [
+    "Harry Potter y la piedra filosofal",
+    "El señor de los anillos: La comunidad del anillo",
+    "Harry Potter y la cámara secreta",
+    "El padrino",
+    "Harry el sucio",
+    "Titanic",
+    "Pottermanía",
+    "Matrix"
+] # la lista se la pedí a la IA, solo que generase una lista compatible con el ejercicio
+
+palabraObjetivo = "Harry" # podríamos pasarla también directamente en la propia funcion
+
+def buscarPalabra(lista, objetivo): # definimos funcion
+    resultado = [] # el resultado de nuestra funcion ira aqui
+    for cadena in lista: # recorremos la lista, cadena a cadena
+        if objetivo in cadena: # si nuestra palabra objetivo está en esa cadena
+            resultado.append(cadena) # añadimos la cadena al resultado
+    return resultado # devolvemos el resultado
+
+print(buscarPalabra(listaPelis, palabraObjetivo)) # imprimimos el resultado
+# FIN EJERCICIO 3
+
+# EJERCICIO 4
 # Genera una función que calcule la diferencia entre los valores de dos listas. Usa la función map().
 
-# Escribe una función que tome una lista de números como parámetro y un valor opcional nota_aprobado (por defecto 5). La función debe calcular la media de los números en la lista y determinar si la media es mayor o igual que nota_aprobado. Si es así, el estado será "aprobado"; de lo contrario, "suspenso". La función debe devolver una tupla que contenga la media y el estado.
+listaNum4 = [10, 20, 30, 40] # creamos dos listas
+listaNum4_2 = [5, 12, 14, 18]
 
+def buscarDiferencias(a, b):
+    resultado = list(map(lambda x, y: x - y, a, b)) # me basé en el ejercicio 2 ya que la operacion es simple
+    return resultado
+
+print(buscarDiferencias(listaNum4, listaNum4_2))
+# FIN EJERCICIO 4
+
+
+# EJERCICIO 5
+#  Escribe una función que tome una lista de números como parámetro y un valor opcional nota_aprobado (por defecto 5). La función debe calcular la media de los números en la lista y determinar si la media es mayor o igual que nota_aprobado. Si es así, el estado será "aprobado"; de lo contrario, "suspenso". La función debe devolver una tupla que contenga la media y el estado.
+
+lista5 = [1, 2, 4, 6, 8, 7, 3, 5, 9, 9, 3, 6, 8, 2, 4] 
+nota_aprobado = 5
+
+def calcularMedia(lista, nota_aprobado):
+    estado = "" # variable para almacenar el estado
+    media = sum(lista) / len(lista) #sum para sumar y len para obtener el length
+    if media >= nota_aprobado: # sencillo el condicional
+        estado = "aprobado"
+    else:
+        estado = "suspenso"
+    return (media, estado) # devolvemos en forma de tulpa
+
+print(calcularMedia(lista5, nota_aprobado))
+# FIN EJERCICIO 5
+
+
+# EJERCICIO 6
 # Escribe una función que calcule el factorial de un número de manera recursiva.
 
+# me ha costado un poco entenderlo, pero lo saqué
+def calFact (numero):
+    if numero == 1: # evitamos que la funcion se repita infinitamente
+        return 1
+    else:
+        return numero * calFact(numero-1) # el numero se multiplica numero* -1 ya que lo hace de manerarecursiva
+
+print(calFact(10))
+# FIN EJERCICIO 6
+
+
 # Genera una función que convierta una lista de tuplas a una lista de strings. Usa la función map().
+
+
 
 # Escribe un programa que pida al usuario dos números e intente dividirlos. Si el usuario ingresa un valor no numérico o intenta dividir por cero, maneja esas excepciones de manera adecuada y muestra un mensaje indicando si la división fue exitosa o no.
 
