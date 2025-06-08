@@ -95,7 +95,7 @@ def calFact (numero):
     if numero == 1: # evitamos que la funcion se repita infinitamente
         return 1
     else:
-        return numero * calFact(numero-1) # el numero se multiplica numero* -1 ya que lo hace de manerarecursiva
+        return numero * calFact(numero-1) # el numero se multiplica factorialmente (numero * -1)
 
 print(calFact(10))
 # FIN EJERCICIO 6
