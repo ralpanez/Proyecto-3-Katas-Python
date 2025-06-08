@@ -12,5 +12,5 @@ He ido resolviendo los ejercicios mientras consultaba las clases del módulo de 
 ## Entrega
 Proyecto enviado por email con el enlace a este repositorio.
 
-## WIP
+## WIP (08/06/2025)
 Las katas no están terminadas, iré actualzando el repo a medida que vaya solucionando los ejercicios.
