@@ -1,3 +1,13 @@
+"""
+
+TODOS LOS EJERCICIOS SE HAN PROBADO EN https://www.online-python.com/
+Rafael Alpañez Vega
+Prometeo FP (Máster thePower)
+
+Basado en documentación oficial, foros técnicos y material educativo
+
+"""
+
 # EJERCICIO 1
 # Escribe una función que reciba una cadena de texto como parámetro y devuelva un diccionario con las frecuencias de cada letra en la cadena. Los espacios no deben ser considerados.
 
@@ -101,35 +111,218 @@ print(calFact(10))
 # FIN EJERCICIO 6
 
 
+# EJERCICIO 7
 # Genera una función que convierta una lista de tuplas a una lista de strings. Usa la función map().
 
+listaTulpas = [(5, 6, 7, 8), ("Buenos", 88, "días")] # lista de tulpas
 
+def convertString(lista):
+    resultado = list(map(str, lista)) # convierte cada tulpa en string
+    return resultado
 
+print(convertString(listaTulpas))
+#FIN EJERCICIO 7
+
+# EJERCICIO 8
 # Escribe un programa que pida al usuario dos números e intente dividirlos. Si el usuario ingresa un valor no numérico o intenta dividir por cero, maneja esas excepciones de manera adecuada y muestra un mensaje indicando si la división fue exitosa o no.
 
+try:
+    num1 = float(input("Introduce el primer número: ")) # input 1
+    num2 = float(input("Introduce el segundo número: ")) # input 2
+    resultado = num1/num2 # dividimos normal
+    print("Resultado: ", resultado)
+except ValueError: # excepto estemos dividiendo cosas que no son numeros
+    print("Solo se permiten números")
+except ZeroDivisionError: # excepto diviamos por cero
+    print("No se puede dividir por cero")
+# FIN EJERCICIO 8
+
+
+# EJERCICIO 9
 # Escribe una función que tome una lista de nombres de mascotas como parámetro y devuelva una nueva lista excluyendo ciertas mascotas prohibidas en España. La lista de mascotas a excluir es ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"]. Usa la función filter().
 
-# Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, lanza una excepción personalizada y maneja el error adecuadamente.
+listaMascotas = [
+    "Perro",
+    "Gato",
+    "Mapache",
+    "Loro",
+    "Tortuga",
+    "Tigre",
+    "Conejo",
+    "Cocodrilo",
+    "Hámster",
+    "Serpiente Pitón",
+    "Pez",
+    "Oso"
+] # le pedí la lista a chatGPT
 
+def excluirMascotas(lista):
+    prohibidas = ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"] # lista del enunciado
+    resultado = list(filter(lambda mascota: mascota not in prohibidas, lista)) # hacemos una lista de las mascotas que NO estén en la lista de prohibidas
+    return resultado
+
+print(excluirMascotas(listaMascotas))
+
+# FIN EJERCICIO 9
+
+
+# EJERCICIO 10
+#  Escribe una función que reciba una lista de números y calcule su promedio. Si la lista está vacía, lanza una excepción personalizada y maneja el error adecuadamente.
+
+lista10 = [12, 15, 50, 33, 55, 80, 75] # lista de ejemplo
+
+try:
+    if len(lista10) == 0: # len = length
+        raise Exception("La lista está vacía.") # el error que mostraremos si la lista estuviese vacía
+    else:
+        media = sum(lista10) / len(lista10) # la suma de la lista dividida por el length de la lista
+        print("Media: ", media)
+except Exception as e: # recogemos el error y lo mostramos en caso de excepcion
+    print("Error: ", e)
+# FIN EJERCICIO 10
+
+
+# EJERCICIO 11
 # Escribe un programa que pida al usuario que introduzca su edad. Si el usuario ingresa un valor no numérico o un valor fuera del rango esperado (por ejemplo, menor que 0 o mayor que 120), maneja las excepciones adecuadamente.
 
+try:
+    edad = int(input("Introduce tu edad: ")) # input
+    if edad < 0: # if, elif y else bastante sencillos
+        raise Exception("La edad no puede ser menor que 0")
+    elif edad > 120:
+        raise Exception("La edad no puede ser mayor que 120")
+    else:
+        print("Tu edad es: ", edad)
+except ValueError: # sacado del ejercicio de antes
+    print("Solo se permiten números")
+except Exception as e: # sacado del ejercicio de antes
+    print("Error: ", e)
+# FIN EJERCICIO 11
+
+
+# EJERCICIO 12
 # Genera una función que, al recibir una frase, devuelva una lista con la longitud de cada palabra. Usa la función map().
 
+def contarLetras(frase):
+    resultado = list(map(lambda palabra: len(palabra), frase.split()))
+    # usaremos frase.split para que nos separe la frase en palabras
+    # map aplica lambda a cada palabra
+    # len me dará el lengthç de cada palabra
+    return resultado
+
+print(contarLetras("Me gusta programar en Visual Studio Code"))
+# FIN EJERCICIO 12
+
+
+# EJERCICIO 13
 # Genera una función que, para un conjunto de caracteres, devuelva una lista de tuplas con cada letra en mayúsculas y minúsculas. Las letras no pueden estar repetidas. Usa la función map().
 
+def devolverLetras(conjunto):
+    final = []
+    for letra in conjunto: # hacemos un for del conjunto
+        if letra not in final: # si la letra no está en el nuevo list se agrega (así omitimos las q ya están)
+            final.append(letra)
+    resultado = list(map(lambda letra: (letra.upper(), letra.lower()), final)) # creamos una lista de tulpa con dos letras: min y MAY
+    return resultado
+
+print(devolverLetras("asanderreblamar"))
+# FIN EJERCICIO 13
+
+
+# EJERCICIO 14
 # Crea una función que retorne las palabras de una lista que comiencen con una letra en específico. Usa la función filter().
 
-# Crea una función lambda que sume 3 a cada número de una lista dada.
+listaPalabras = [
+    "manzana",
+    "mesa",
+    "camión",
+    "coche",
+    "murciélago",
+    "avión",
+    "montaña",
+    "perro",
+    "mariposa",
+    "cereal"
+] # le pido la lista a GPT
 
+def retPalIni(lista, letra):
+    resultado = list(filter(lambda palabra: palabra.startswith(letra), lista)) # palabra de lista empieza por letra
+    return resultado
+
+print (retPalIni(listaPalabras, "m"))
+# FIN EJERCICIO 14
+
+
+# EJERCICIO 15
+# Crea una función lambda que sume 3 a cada número de una lista dada
+
+lista15 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ejercicio15 = list(map(lambda sumar: sumar + 3, lista15)) # lambda sumar: sumar + 3 para cada elemento 'sumar', le sumamos 3 valga la redundancia
+print(ejercicio15)
+# FIN EJERCICIO 15
+
+
+# EJERCICIO 16
 # Escribe una función que tome una cadena de texto y un número entero n como parámetros y devuelva una lista de todas las palabras que sean más largas que n. Usa la función filter().
 
-# Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2] corresponde al número 572. Usa la función reduce().
+cadena16 = "Esto es una cadena de texto"
+nNumero = 3
 
+def masLargoQue(cadena, num):
+    resultado = list(filter(lambda palabra: len(palabra) > num, cadena.split())) # para cada palabra miramos long y añadimos al list la palabra mayor en long que nNumero
+    return resultado
+
+print(masLargoQue(cadena16, nNumero))
+# FIN EJERCICIO 16
+
+
+# EJERCICIO 17
+# Crea una función que tome una lista de dígitos y devuelva el número correspondiente. Por ejemplo, [5,7,2] corresponde al número 572. Usa la función reduce().
+from functools import reduce # importamos (tuve que mirar docs)
+
+listaDigitos = [5, 6, 7, 8, 9]
+# 'x' es el acumulador, 'y' el valor actual
+# 'x * 10 + y' va formando el numero
+resultado = reduce(lambda x, y: x * 10 + y, listaDigitos)
+print(resultado)
+# FIN EJERCICIO 17
+
+
+# EJERCICIO 18
 # Escribe un programa en Python que cree una lista de diccionarios con información de estudiantes (nombre, edad, calificación) y use filter para extraer a los estudiantes con una calificación mayor o igual a 90.
 
+estudiantes = [
+    {"nombre": "Laura", "edad": 20, "nota": 95},
+    {"nombre": "Carlos", "edad": 22, "nota": 88},
+    {"nombre": "Lucía", "edad": 21, "nota": 90},
+    {"nombre": "Pedro", "edad": 23, "nota": 76},
+    {"nombre": "Marta", "edad": 20, "nota": 77},
+    {"nombre": "Juan", "edad": 24, "nota": 92}
+] # le pedí la lista a GPT
+
+filtroEstudiantes = list(filter(lambda estudiante: estudiante["nota"] >= 90, estudiantes)) # filtro sencillo
+print(filtroEstudiantes)
+# FIN EJERCICIO 18
+
+
+# EJERCICIO 19
 # Crea una función lambda que filtre los números impares de una lista dada.
 
+lista19 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+filtro19 = list(filter(lambda x: x % 2, lista19)) # devuelve true solo cuando x es impar
+print(filtro19)
+# FIN EJERCICIO 19
+
+
+# EJERCICIO 20
 # Para una lista con elementos de tipo integer y string, obtén una nueva lista solo con los valores int. Usa la función filter().
+
+listaMixta = [1, 2, 3, "Hola", "buenas", "tardes"]
+filtro20 = list(filter(lambda elemento: isinstance(elemento, int), listaMixta)) # devuelve true si el elemento es int
+print(filtro20)
+# FIN EJERCICIO 20
+
+
 # Crea una función que calcule el cubo de un número dado mediante una función lambda.
 # Dada una lista numérica, obtén el producto total de los valores. Usa la función reduce().
 # Concatena una lista de palabras. Usa la función reduce().
